@@ -27,6 +27,7 @@ jobs:
       - run:
           name: restore large file(s)
           command: |
+            mv $HOME/.lfsconfig ./.lfsconfig
             git lfs pull
       - run:
           name: list files
