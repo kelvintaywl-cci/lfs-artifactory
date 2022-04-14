@@ -20,6 +20,10 @@ jobs:
             # should be 2 lines
             wc -l $HOME/.lfsconfig
       - checkout
+      - run:
+          name: list files
+          command: |
+            ls -laH
 
 workflows:
   main:
