@@ -8,6 +8,7 @@ jobs:
     executor:
       name: windows/default
     steps:
+      - checkout
       - run:
           name: set up LFS config
           shell: bash.exe
@@ -15,10 +16,10 @@ jobs:
             printenv LFS_CONFIG | base64 --decode > .lfsconfig
       - run:
           name: sanity check on LFS config
+          shell: bash.exe
           command: |
             # should be 2 lines
             wc -l .lfsconfig
-      - checkout
 
 workflows:
   main:
