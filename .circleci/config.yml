@@ -1,0 +1,18 @@
+version: 2.1
+
+orbs: 
+  windows: circleci/windows@2.2.0
+
+jobs:
+  checking-out-windows:
+    executor:
+      name: windows/default
+    steps:
+      # NOTE: this would likely fail,
+      # since no credentials were added
+      - checkout
+
+workflows:
+  main:
+    jobs:
+      - checking-out-windows
