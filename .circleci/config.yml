@@ -1,27 +1,27 @@
 version: 2.1
 
-orbs: 
-  windows: circleci/windows@2.2.0
+# orbs: 
+#   windows: circleci/windows@2.2.0
 
 jobs:
-  checking-out-windows:
-    executor:
-      name: windows/default
+  checking-out-linux:
+    # executor:
+    #   name: windows/default
+    machine:
+      image: ubuntu-2004:current
     steps:
-      - checkout
       - run:
           name: set up LFS config
-          shell: bash.exe
           command: |
-            printenv LFS_CONFIG | base64 --decode > .lfsconfig
+            printenv LFS_CONFIG | base64 --decode > $HOME/.lfsconfig
       - run:
           name: sanity check on LFS config
-          shell: bash.exe
           command: |
             # should be 2 lines
-            wc -l .lfsconfig
+            wc -l $HOME/.lfsconfig
+      - checkout
 
 workflows:
   main:
     jobs:
-      - checking-out-windows
+      - checking-out-linux
