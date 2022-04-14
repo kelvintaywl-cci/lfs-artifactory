@@ -24,6 +24,14 @@ jobs:
           name: list files
           command: |
             ls -laH
+      - run:
+          name: restore large file(s)
+          command: |
+            git lfs pull
+      - run:
+          name: list files
+          command: |
+            ls -laH
 
 workflows:
   main:
