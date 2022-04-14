@@ -10,6 +10,7 @@ jobs:
     steps:
       - run:
           name: set up LFS config
+          shell: bash.exe
           command: |
             printenv LFS_CONFIG | base64 --decode > .lfsconfig
       - run:
