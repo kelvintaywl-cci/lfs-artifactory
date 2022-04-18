@@ -1,15 +1,16 @@
 version: 2.1
 
-# orbs: 
-#   windows: circleci/windows@2.2.0
+orbs: 
+  git-shallow-clone: guitarrapc/git-shallow-clone@2.4.0
 
 jobs:
   checking-out-linux:
-    # executor:
-    #   name: windows/default
     machine:
       image: ubuntu-2004:current
     steps:
+      # we will first set up the LFS config, but
+      # we need to keep the $HOME/project directory empty (otherwise git clone will complain).
+      # hence, this is temporarily placed in a different location first ($HOME)
       - run:
           name: set up LFS config
           command: |
@@ -22,9 +23,10 @@ jobs:
           command: |
             # should be 2 lines
             wc -l $HOME/.lfsconfig
-      - checkout
+      - git-shallow-clone/checkout:
+          fetch_depth: 3
       - run:
-          name: list files
+          name: list files (notice file sizes)
           command: |
             ls -laH
       - run:
@@ -34,7 +36,7 @@ jobs:
             git lfs install
             git lfs pull
       - run:
-          name: list files
+          name: list files again (notice file sizes)
           command: |
             ls -laH
 
