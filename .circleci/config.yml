@@ -14,7 +14,7 @@ jobs:
       - run:
           name: set up LFS config
           command: |
-            echo -e "[lfs]\nurl = 'https://${ARTFACTORY_USERNAME}:${ARTFACTORY_API_TOKEN}@kelvintaywl.jfrog.io/artifactory/api/lfs/kelvintaywl-cci-gitlfs-local'" > $HOME/.lfsconfig
+            echo -e "[lfs]\nurl = 'https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_API_TOKEN}@kelvintaywl.jfrog.io/artifactory/api/lfs/kelvintaywl-cci-gitlfs-local'" > $HOME/.lfsconfig
       - run:
           name: sanity check on LFS config
           command: |
