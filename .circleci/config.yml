@@ -14,10 +14,7 @@ jobs:
       - run:
           name: set up LFS config
           command: |
-            sed -i.bak "s/<USERNAME>/${ARTFACTORY_USERNAME}/" lfsconfig.incomplete
-            sed -i.bak "s/<API_TOKEN>/${ARTFACTORY_API_TOKEN}/" lfsconfig.incomplete
-            rm lfsconfig.incomplete.bak
-            mv lfsconfig.incomplete $HOME/.lfsconfig
+            echo -e "[lfs]\nurl = 'https://${ARTFACTORY_USERNAME}:${ARTFACTORY_API_TOKEN}@kelvintaywl.jfrog.io/artifactory/api/lfs/kelvintaywl-cci-gitlfs-local'" > $HOME/.lfsconfig
       - run:
           name: sanity check on LFS config
           command: |
