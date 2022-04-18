@@ -13,7 +13,10 @@ jobs:
       - run:
           name: set up LFS config
           command: |
-            printenv LFS_CONFIG | base64 --decode > $HOME/.lfsconfig
+            sed -i.bak "s/<USERNAME>/${ARTFACTORY_USERNAME}/" lfsconfig.incomplete
+            sed -i.bak "s/<API_TOKEN>/${ARTFACTORY_API_TOKEN}/" lfsconfig.incomplete
+            rm lfsconfig.incomplete.bak
+            mv lfsconfig.incomplete $HOME/.lfsconfig
       - run:
           name: sanity check on LFS config
           command: |

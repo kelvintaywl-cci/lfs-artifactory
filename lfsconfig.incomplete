@@ -1,0 +1,2 @@
+[lfs]
+url = "https://<USERNAME>:<API_TOKEN>@kelvintaywl.jfrog.io/artifactory/api/lfs/kelvintaywl-cci-gitlfs-local"
